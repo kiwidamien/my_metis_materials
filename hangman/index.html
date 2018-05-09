@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='static/css/style.css'/>
+  </head>
+  <body>
+    <div class="title">
+      HANGPERSON
+    </div>
+
+    <div class="instructions">
+      Please press any letter to register a guess
+    </div>
+
+    <div class="container">
+      <div class="word-region">
+      </div>
+
+      <div class="hangperson">
+        <svg width="250px" height="260px"></svg>
+      </div>
+    </div>
+    
+    <div class="used-letters">
+    </div>
+
+    <button onclick='startNewGame()'>
+      Start Over?
+    </button>
+
+    <div id="result">
+    </div>
+
+  </body>
+  <script type="text/javascript" src="static/js/hangman_picture.js"></script>
+  <script type="text/javascript" src="static/js/words.js"></script>
+  <script type="text/javascript" src="static/js/game.js"></script>
+  <script>
+    startNewGame();
+    document.addEventListener('keydown',
+    (event) => {
+    makeGuess(event.key);
+    });
+  </script>
+</html>
