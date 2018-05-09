@@ -1,0 +1,58 @@
+<html>
+
+  <head>
+    <link rel='stylesheet' href="static/css/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class='title'>
+      <img src="static/image/australia.svg"/>
+      Australian Open
+      <img src="static/image/raquet.svg"/>
+    </div>
+
+    <div class='main_area'>
+      <div class='intro'>
+        <h2> What is the Australian Open?</h2>
+        This is a website for the Australian open is blah, people will be playing from blah to blah.
+      </div>
+
+      <div class='inputs'>
+        <form>
+          <span>
+            <label for="rank1">Rank of Player 1</label><input name='rank1'/>
+          </span>
+          <span>
+            <label for="rank2">Rank of Player 2</label><input name='rank2'/>
+          </span>
+          <span>
+            <label for="temperature">Temperature (C)</label><input name='temperature'/></span>
+          <span>
+          <label for='match'>Match type</label>
+          <select name='match'>
+            <option value="ms">Men's Singles</option>
+            <option value="md">Men's Doubles</option>
+            <option value="ws">Women's Singles</option>
+            <option value="wd">Women's Doubles</option>
+          </select>
+          <label for='court'>Court</label>
+          <select name='court'>
+            <option value='stadium'>Stadium</option>
+          </select>
+          </span>
+          <button>Make prediction</button>
+
+        </form>
+      </div>
+
+      <div class='output'>
+        The length of the match is
+
+        <div class='time_result' id='time'>
+          2:12
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

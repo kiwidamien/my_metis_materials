@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+          integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <div class='header'>
+      <i class="fas fa-hand-rock"></i>
+      <i class="fas fa-hand-paper"></i>
+      <i class="fas fa-hand-scissors"></i>
+      <i class="fas fa-hand-lizard"></i>
+      <i class="fas fa-hand-spock"></i>
+    </div>
+    <div class="title">Rock-paper-scissors-lizard-spock</div>
+
+    <div class='instruction-overview'>
+      Instructions
+      <a href='#' id='toggleInstructions'>Show Instructions</a>
+      <div class='instruction-detail'>
+        <ul>
+          <li>Scissors cut paper</li>
+          <li>Paper covers rock</li>
+          <li>Rock crushes scissors</li>
+          <li>Rock crushes lizard</li>
+          <li>Lizard poisons Spock</li>
+          <li>Spock smashes scissors</li>
+          <li>Scissors decapitates lizard</li>
+          <li>Lizard eats paper</li>
+          <li>Paper disproves Spock</li>
+          <li>Spock vaporizes rock</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class='battleground'>
+      <div class='choice' id='computer_choice'>
+        Blank
+      <div class='choice' id='your_choice'>
+        Blank
+      </div>
+    <div>
+
+    <div class='pick'>
+      <label for='your_move'>Make a selection</label>
+      <select id='pick_your_move'>
+        <option value='rock'>Rock </option>
+        <option value='paper'>Paper</option>
+        <option value='scissors'>Scissors</option>
+      </select>
+
+      <button>Play!</button>
+    </div>
+
+  </body>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+  <script>
+
+    function getLogo(option_name) {
+      return `<i class="fas fa-hand-${option_name}" style="font-size:3em; color:Tomato;"></i>`;
+    }
+
+    $('#toggleInstructions').click( () => {
+      $('.instruction-detail').toggle();
+    })
+
+    $('#pick_your_move').change( () => {
+      const option = $('#pick_your_move').val();
+      const your_choice_element = $('#your_choice');
+      your_choice_element.html(getLogo(option));
+    });
+
+    function declareWinner(choice1, choice2) {
+      if (choice1 === choice2) {
+        console.log('This is a tie');
+        return 0;
+      }
+
+      const winsAgainst = {
+        'rock': ['scissors', 'lizard'],
+        'paper': ['rock', 'spock'],
+        'scissors': ['paper', 'lizard'],
+        'lizard': ['paper', 'spock'],
+        'spock': ['scissors', 'rock']
+      };
+
+      if (!winsAgainst[choice1]) {
+        alert(choice1 + ' is not a valid choice');
+        return -1;
+      }
+
+      if (!winsAgainst[choice2]) {
+        alert(choice2 + ' is not a valid choice');
+        return -1;
+      }
+
+      if (winsAgainst[choice1].indexOf(choice2) !== -1) {
+        return 1;
+      }
+      return 2;
+    }
+  </script>
+</hmtl>

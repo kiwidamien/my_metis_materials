@@ -1,0 +1,68 @@
+@font-face {
+     font-family: 'Digital';
+     src: url('static/font/alarm_clock.ttf');
+}
+
+body{
+    background-color: #00843D;
+    color: white;
+    font-size: 16pt;
+}
+
+.title img{
+    height: 150px;
+    stroke: yellow;
+    margin: 10px;
+}
+
+.title{
+    display: flex;
+    justify-content: space-around;
+    width:80%;
+    margin: 0 auto;
+    color: white;
+    font-size: 36pt;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.time_result {
+    display: flex;
+    height: 1.2em;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    /*font-family: 'Digital';*/
+    font-size: 28pt;
+    color: red;
+    background-color: #4c3d2d;
+    width: 3em;
+    text-align: right;
+    margin: 0 auto;
+}
+
+.main_area{
+    width: 80%;
+    padding: 10px;
+
+    margin: 0 auto;
+}
+
+.inputs{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    border: 1px solid #CDCDCD;
+    padding: 5px;
+}
+
+.inputs button{
+  height: 40px;
+  margin: 20px auto;
+  border-radius: 5px;
+
+}
+
+.inputs span{
+    display: block;
+    padding-top: 5px;
+}
