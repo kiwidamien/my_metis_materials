@@ -17,7 +17,7 @@
     <div class='instruction-overview'>
       Instructions
       <a href='#' id='toggleInstructions'>Show Instructions</a>
-      <div class='instruction-detail'>
+      <div class='instruction-detail' style="display: none;">
         <ul>
           <li>Scissors cut paper</li>
           <li>Paper covers rock</li>
@@ -36,10 +36,11 @@
     <div class='battleground'>
       <div class='choice' id='computer_choice'>
         Blank
+      </div>
       <div class='choice' id='your_choice'>
         Blank
       </div>
-    <div>
+    </div>
 
     <div class='pick'>
       <label for='your_move'>Make a selection</label>
@@ -49,20 +50,34 @@
         <option value='scissors'>Scissors</option>
       </select>
 
-      <button>Play!</button>
+      <button onclick='playGame()'>Play!</button>
     </div>
+
+    <div id='result'>
+    </div>
+
 
   </body>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
   <script>
 
+    const winsAgainst = {
+      'rock': ['scissors', 'lizard'],
+      'paper': ['rock', 'spock'],
+      'scissors': ['paper', 'lizard'],
+      'lizard': ['paper', 'spock'],
+      'spock': ['scissors', 'rock']
+    };
+
     function getLogo(option_name) {
       return `<i class="fas fa-hand-${option_name}" style="font-size:3em; color:Tomato;"></i>`;
     }
 
     $('#toggleInstructions').click( () => {
+      const newStatus = $('.instruction-detail').is(':visible') ? 'Show' : 'Hide'
       $('.instruction-detail').toggle();
+      $('#toggleInstructions').text(`${newStatus} Instructions`);
     })
 
     $('#pick_your_move').change( () => {
@@ -71,19 +86,51 @@
       your_choice_element.html(getLogo(option));
     });
 
+    function computerChoice() {
+      const validMoves = Object.keys(winsAgainst);
+      const computerMoveIndex = Math.floor(Math.random() * validMoves.length);
+      const move = validMoves[computerMoveIndex];
+      $('#computer_choice').html(getLogo(move));
+      return move;
+    }
+
+    function playGame() {
+      const you = $('#pick_your_move').val();
+
+      // did you pick anything? Was it valid?
+      console.log(you);
+      if (Object.keys(winsAgainst).indexOf(you) === -1) {
+        return;
+      }
+
+      const computer = computerChoice();
+      const result = declareWinner(computer, you);
+
+      const resultElement = $('#result');
+      switch(result){
+        case -1:
+        return;
+
+        case 0:
+        resultElement.text('Game was a tie');
+        break;
+
+        case 1:
+        resultElement.text('The computer won');
+        break;
+
+        case 2:
+        resultElement.text('You Won!');
+        break;
+      }
+
+    }
+
     function declareWinner(choice1, choice2) {
       if (choice1 === choice2) {
         console.log('This is a tie');
         return 0;
       }
-
-      const winsAgainst = {
-        'rock': ['scissors', 'lizard'],
-        'paper': ['rock', 'spock'],
-        'scissors': ['paper', 'lizard'],
-        'lizard': ['paper', 'spock'],
-        'spock': ['scissors', 'rock']
-      };
 
       if (!winsAgainst[choice1]) {
         alert(choice1 + ' is not a valid choice');
