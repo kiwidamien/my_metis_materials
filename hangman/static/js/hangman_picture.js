@@ -16,17 +16,17 @@ function drawHangman(numMissed) {
     ];
 
     const toDraw = lines.slice(0, numMissed);
-    
+
     const lineFunction = d3.line()
           .x( (d) => d[0])
           .y( (d) => d[1]);
-    
+
     svg.selectAll('path')
         .data(toDraw)
         .enter()
         .append('path')
         .attr("d", d => lineFunction(d))
-        .attr("stroke", "#774a10")
+        .attr("stroke", "#e8a061")
         .attr("stroke-width", 2)
         .attr("fill", "none");
 };

@@ -21,9 +21,9 @@ function didWeLose() {
 
 function didWeWin() {
     const num_unguessed_chars = word_to_guess.split('')
-          .filter( (letter) => (guessed.indexOf(letter) === -1) )
+          .filter( (letter) => (guessed.indexOf(letter) === -1) && (isLetter(letter)))
           .length;
-    
+
     return (!didWeLose()) && (num_unguessed_chars === 0);
 }
 
@@ -55,7 +55,7 @@ function updateResult() {
     if (didWeLose()) {
         message = `Oh oh! Out of guesses! The word was ${word_to_guess}`;
     }
-    
+
     $('#result').text(message);
 }
 
@@ -73,7 +73,7 @@ function makeGuess(letter) {
     }
 
     guessed.push(letter);
-    
+
     if (word_to_guess.indexOf(letter) === -1) {
         num_errors += 1;
         updateStatus();
